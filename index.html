@@ -7,8 +7,11 @@
     <script src="counter.js"></script>
 </head>
 <body>
-    <my-counter value = 0 onclick="increment()"/>
-        <button onclick="decrement()">-</button>
-    </my-counter>
+    <my-counter></my-counter>
+        <button id='increment'>+</button>
+        <button id='decrement'>-</button>
 </body>
+<script>
+    document.querySelector("#increment").onclick = () => document.querySelector('my-counter').setAttribute("value", "Shadow Dom");
+</script>
 </html>

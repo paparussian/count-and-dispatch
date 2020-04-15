@@ -1,22 +1,23 @@
 class MyCounter extends HTMLElement {
+    static get observedAttributes() {
+        return ["oldValue"]
+    }
     constructor() {
         super();
-        this.value = 0;
+        this.attachShadow({mode:"open"});
+        this.render();
     }
-    connectedCallback() {
-        this.innerHTML = this.value;
-        this.addEventListener('click', this.increment, true);
-        this.addEventListener('click', this.decrement, true);
+render () {
+    const p = document.createElement('template');
+    p.innerHTML = `
+        <div>
+            <p id="oldValue">Icrement or decrement</p>
+        </div>
+    `;
+    this.shadowRoot.appendChild(p.content.cloneNode(true));
+}
+    attributeChangedCallback(oldValue, newValue){
+        this.shadowRoot.getElementById(oldValue).innerText = newValue;
     }
-    increment() {
-        // this.value.onclick = this.value.onclick.bind(this)
-        return this.value +1;
-    }
-
-    decrement() {
-        return this.value -1;
-    }
-
-
 }
 customElements.define("my-counter", MyCounter);
