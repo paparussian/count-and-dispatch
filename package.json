@@ -1,0 +1,22 @@
+{
+  "name": "counter4dispatch",
+  "version": "1.0.0",
+  "description": "testing redux",
+  "main": "counter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paparussian/count-and-dispatch.git"
+  },
+  "author": "alberto paparusso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paparussian/count-and-dispatch/issues"
+  },
+  "homepage": "https://github.com/paparussian/count-and-dispatch#readme",
+  "dependencies": {
+    "redux": "^4.0.5"
+  }
+}
