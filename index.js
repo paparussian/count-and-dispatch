@@ -13,6 +13,8 @@ class MyCounter extends HTMLElement {
         p.innerHTML = `
             <div>
                 <p id="oldValue" value=${value}>Icrement or decrement ${value}</p>
+                <button id="incrValue">+</button>
+                <button id="decrValue">-</button>
             </div>
         `;
         this.shadowRoot.appendChild(p.content.cloneNode(true));
