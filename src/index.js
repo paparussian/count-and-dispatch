@@ -2,6 +2,7 @@ import {applyMiddleware, createStore} from 'redux';
 
 
 
+
 window.onload = 
 function createButton() {
     console.log('mancuso', applyMiddleware);
@@ -21,64 +22,57 @@ function createButton() {
     incrButton.addEventListener("click", function(){
         value = value+1;
         paragraph.innerHTML = value;
-        console.log(store.dispatch(ACTION_1));
+        console.log(store.dispatch(INCRACTION));
     });
 
     decrButton.addEventListener("click", function(){
         value = value -1;
         paragraph.innerHTML = value;
-        console.log(store.dispatch(ACTION_2));
+        console.log(store.dispatch(DECRACTION));
     })
 }
 
-/*creo il redux store */
-const store = createStore(
-    (state = 0) => state
-  );
+const INCREMENT = {type: "INCREMENT"};
+const DECREMENT = {type: "DECREMENT"};
 
-/*con il metodo getState() prendo il valore dello state*/
-  console.log(store.getState());
-
-/*creo la action (oggetto che contiene info sull'azione appena verificata)*/
-  const ACTION_1 = {
-      type: "CLICK",
-      text: "You clicked the INCREMENTER!"
-  }
-
-  const ACTION_2 = {
-      type: "CLICK",
-      text: "You clicked the DECREMENTER"
-  }
-
-// console.log(ACTION);
-
-/*creo l'action creator (funzione che ritorna l'azione. ovvero crea un oggetto che rappresenta gli eventi dell'azione)*/
-const click = () => {
-    return {type: "CLICK",
-            text: "You clicked action creator!"
-        }
-}
-
-/* invio la action allo store*/
-console.warn("dispatcho la action ",store.dispatch(click()));
-
-
-const defaultState = {
-    clicked: false
-}
 /*creo il reducer: responsabile delle modifiche allo state, ossia risponde alle action dispatchate - RITORNA SEMPRE UN NUOVO STATE*/
-const clickReducer = (state = defaultState, action) => {
+const clickReducer = (state = 0, action) => {
     switch (action.type) {
-        case "INCREMENT":
+        case INCREMENT:
             return state + 1;
-        case "DECREMENT":
+        case DECREMENT:
             return state -1;
         default:
             return state
     }
 }
 
-// console.log(clickReducer);
+console.log(clickReducer);
+
+/*creo il redux store */
+const store = createStore(clickReducer);
+
+/*creo le action creator (funzioni che ritornano le azioni. Ovvero creano oggetti che rappresentano gli eventi dell'azione)*/
+
+  const INCRACTION = () => {
+      return {type: INCREMENT,
+              text: "You clicked the INCREMENTER!"
+             } 
+  }
+
+  const DECRACTION = () => {
+      return {type: DECREMENT,
+              text: "You clicked the DECREMENTER!"
+             }
+  }
+
+/* invio la action allo store*/
+console.warn("dispatcho la action ",store.dispatch(INCRACTION()));
+
+/*con il metodo getState() prendo il valore dello state*/
+console.log(store.getState());
+
+
 
 
 
