@@ -13,13 +13,6 @@ function createButton() {
         value = value+1;
         paragraph.innerHTML = value;
     })
-
-
-    // incrButton.onclick =  function() {
-    //    value +1;
-    //    paragraph.innerHTML = value;
-    // }
-
 }
 
 
