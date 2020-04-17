@@ -1,4 +1,7 @@
 import {applyMiddleware, createStore} from 'redux';
+
+
+
 window.onload = 
 function createButton() {
     console.log('mancuso', applyMiddleware);
@@ -18,11 +21,13 @@ function createButton() {
     incrButton.addEventListener("click", function(){
         value = value+1;
         paragraph.innerHTML = value;
+        console.log(store.dispatch(ACTION_1));
     });
 
     decrButton.addEventListener("click", function(){
         value = value -1;
         paragraph.innerHTML = value;
+        console.log(store.dispatch(ACTION_2));
     })
 }
 
@@ -30,14 +35,22 @@ function createButton() {
 const store = createStore(
     (state = 0) => state
   );
-/*con il metodo getState() prendo lo state*/
+
+/*con il metodo getState() prendo il valore dello state*/
   console.log(store.getState());
+
 /*creo la action (oggetto che contiene info sull'azione appena verificata)*/
-  const ACTION = {
+  const ACTION_1 = {
       type: "CLICK",
-      text: "You clicked!"
+      text: "You clicked the INCREMENTER!"
   }
-console.log(ACTION);
+
+  const ACTION_2 = {
+      type: "CLICK",
+      text: "You clicked the DECREMENTER"
+  }
+
+// console.log(ACTION);
 
 /*creo l'action creator (funzione che ritorna l'azione. ovvero crea un oggetto che rappresenta gli eventi dell'azione)*/
 const click = () => {
@@ -47,7 +60,7 @@ const click = () => {
 }
 
 /* invio la action allo store*/
-console.log(store.dispatch(click()));
+console.warn("dispatcho la action ",store.dispatch(click()));
 
 
 const defaultState = {
@@ -56,14 +69,16 @@ const defaultState = {
 /*creo il reducer: responsabile delle modifiche allo state, ossia risponde alle action dispatchate - RITORNA SEMPRE UN NUOVO STATE*/
 const clickReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case "CLICK":
-            return {clicked: true};
+        case "INCREMENT":
+            return state + 1;
+        case "DECREMENT":
+            return state -1;
         default:
             return state
     }
 }
 
-console.log(defaultState);
+// console.log(clickReducer);
 
 
 
