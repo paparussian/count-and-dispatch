@@ -5,16 +5,23 @@ function createButton() {
     const incrButton = document.createElement("button");
     const textButton = document.createTextNode("+");
     incrButton.appendChild(textButton);
-    document.getElementById("counter").appendChild(incrButton);  
-    
-    incrButton.addEventListener("click", function() {
-        const paragraph = document.createElement("p");
-        let value = 0;
-        const textParagraph = document.createTextNode(value);
-        paragraph.appendChild(textParagraph);
-        document.getElementById("counter").appendChild(paragraph);
+    document.getElementById("counter").appendChild(incrButton); 
+
+    const paragraph = document.getElementById('value');
+    let value = 0;
+    incrButton.addEventListener("click", function(){
+        value = value+1;
+        paragraph.innerHTML = value;
     })
+
+
+    // incrButton.onclick =  function() {
+    //    value +1;
+    //    paragraph.innerHTML = value;
+    // }
+
 }
+
 
 const store = createStore(
     (state = 5) => state
