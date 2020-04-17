@@ -15,40 +15,44 @@ function createButton() {
     })
 }
 
-
+/*creo il redux store */
 const store = createStore(
-    (state = 5) => state
+    (state = 0) => state
   );
-  
+/*con il metodo getState() prendo lo state*/
   console.log(store.getState());
-
+/*creo la action (oggetto che contiene info sull'azione appena verificata)*/
   const ACTION = {
       type: "CLICK",
       text: "You clicked!"
   }
-console.log(ACTION.text);
+console.log(ACTION);
 
-/*definisco l'action creator */
+/*creo l'action creator (funzione che ritorna l'azione. ovvero crea un oggetto che rappresenta gli eventi dell'azione)*/
 const click = () => {
     return {type: "CLICK",
             text: "You clicked action creator!"
         }
 }
 
-store.dispatch(click());
+/* invio la action allo store*/
+console.log(store.dispatch(click()));
+
 
 const defaultState = {
     clicked: false
 }
-
+/*creo il reducer: responsabile delle modifiche allo state, ossia risponde alle action dispatchate - RITORNA SEMPRE UN NUOVO STATE*/
 const clickReducer = (state = defaultState, action) => {
     switch (action.type) {
         case "CLICK":
             return {clicked: true};
         default:
-            return defaultState
+            return state
     }
 }
+
+console.log(defaultState);
 
 
 
