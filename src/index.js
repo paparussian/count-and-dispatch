@@ -3,14 +3,25 @@ window.onload =
 function createButton() {
     console.log('mancuso', applyMiddleware);
     const incrButton = document.createElement("button");
-    const textButton = document.createTextNode("+");
-    incrButton.appendChild(textButton);
+    const textButton_1 = document.createTextNode("+");
+    incrButton.appendChild(textButton_1);
     document.getElementById("counter").appendChild(incrButton); 
+
+    const decrButton = document.createElement("button");
+    const textButton_2 = document.createTextNode("-");
+    decrButton.appendChild(textButton_2);
+    document.getElementById("counter").appendChild(decrButton); 
+
 
     const paragraph = document.getElementById('value');
     let value = 0;
     incrButton.addEventListener("click", function(){
         value = value+1;
+        paragraph.innerHTML = value;
+    });
+
+    decrButton.addEventListener("click", function(){
+        value = value -1;
         paragraph.innerHTML = value;
     })
 }
