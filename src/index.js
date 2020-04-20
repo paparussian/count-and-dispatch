@@ -20,7 +20,8 @@ function createButton() {
     incrButton.addEventListener("click", function(){
         value = value+1;
         paragraph.innerHTML = value;
-        console.log(store.dispatch(INCREMENT));
+        store.dispatch(incrementPayload(value));
+        // console.log(store.dispatch(INCREMENT));
         console.log('STATE IS: ' + value);
     });
 
@@ -28,7 +29,7 @@ function createButton() {
     decrButton.addEventListener("click", function(){
         value = value -1;
         paragraph.innerHTML = value;
-        console.log(store.dispatch(DECREMENT));
+        store.dispatch(decrementPayload(value));
         console.log('STATE IS: ' + value);
     })
 }
@@ -37,10 +38,10 @@ const INCREMENT = {type: "INCREMENT"};
 const DECREMENT = {type: "DECREMENT"};
 
 /*creo il reducer: responsabile delle modifiche allo state, ossia risponde alle action dispatchate - RITORNA SEMPRE UN NUOVO STATE*/
-const clickReducer = (state = 0, action) => {
+const reducers = (state = 0, action) => {
     switch (action.type) {
         case INCREMENT:
-            return state + 1;
+            return state + 1; //Object.assign({}, state, {state: state+1})
         case DECREMENT:
             return state -1;
         default:
@@ -48,10 +49,23 @@ const clickReducer = (state = 0, action) => {
     }
 }
 
-// console.log(clickReducer);
-
 /*creo il redux store */
-const store = createStore(clickReducer);
+const store = createStore(reducers);
+
+
+/*function che dispatcha il payload */
+const incrementPayload = (value) => {
+    return {action: INCREMENT,
+            payload: value}
+}
+
+const decrementPayload = (value) => {
+    return {action: DECREMENT,
+            payload: value}
+}
+
+// console.log(reducers);
+
 
 /*creo le action creator (funzioni che ritornano le azioni. Ovvero creano oggetti che rappresentano gli eventi dell'azione)*/
 
@@ -72,4 +86,5 @@ const store = createStore(clickReducer);
 // console.log("dispatcho la action ",store.dispatch(DECRACTION()));
 
 /*con il metodo getState() prendo il valore dello state*/
-console.log(store.getState());
+console.log("STARTING STATE IS: " + store.getState());
+
