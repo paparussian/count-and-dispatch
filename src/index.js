@@ -1,11 +1,9 @@
 import {applyMiddleware, createStore} from 'redux';
 
 
-
-
 window.onload = 
 function createButton() {
-    console.log('mancuso', applyMiddleware);
+    // console.log('mancuso', applyMiddleware);
     const incrButton = document.createElement("button");
     const textButton_1 = document.createTextNode("+");
     incrButton.appendChild(textButton_1);
@@ -18,17 +16,20 @@ function createButton() {
 
 
     const paragraph = document.getElementById('value');
-    let value = 0;
+    let value = store.getState();
     incrButton.addEventListener("click", function(){
         value = value+1;
         paragraph.innerHTML = value;
         console.log(store.dispatch(INCREMENT));
+        console.log('STATE IS: ' + value);
     });
+
 
     decrButton.addEventListener("click", function(){
         value = value -1;
         paragraph.innerHTML = value;
         console.log(store.dispatch(DECREMENT));
+        console.log('STATE IS: ' + value);
     })
 }
 
@@ -67,54 +68,8 @@ const store = createStore(clickReducer);
   }
 
 /* invio la action allo store*/
-console.warn("dispatcho la action ",store.dispatch(INCRACTION()));
-console.warn("dispatcho la action ",store.dispatch(DECRACTION()));
+// console.log("dispatcho la action ",store.dispatch(INCRACTION()));
+// console.log("dispatcho la action ",store.dispatch(DECRACTION()));
 
 /*con il metodo getState() prendo il valore dello state*/
 console.log(store.getState());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  class MyCounter extends HTMLElement {
-//      static get observedAttributes() {
-//           //return ["oldValue"]
-//          return {
-//              value: {type: Number, attribute: false}
-//          };
-//      }
-//      constructor() {
-//          super();
-//          this.attachShadow({mode:"open"});
-//          this.render();
-//      }
-//      render () {
-//          const div = document.createElement('template');
-//          let value = 0;
-//          div.innerHTML = `
-//              <div>
-//                  <p id="oldValue" value=${value}>Icrement or decrement ${value}</p>
-//                  <button id="incrValue" onclick="${() => incrValue(value)}">+</button>
-//                  <button id="decrValue">-</button>
-//              </div>
-//          `;
-//          this.shadowRoot.appendChild(div.content.cloneNode(true));
-         
-//      }
-//     //  incrValue = value => {
-//     //      console.log(value);
-//     //      return value +1
-//     //  };
-//  }
-//  customElements.define("my-counter", MyCounter);
