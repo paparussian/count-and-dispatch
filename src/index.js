@@ -22,13 +22,13 @@ function createButton() {
     incrButton.addEventListener("click", function(){
         value = value+1;
         paragraph.innerHTML = value;
-        console.log(store.dispatch(INCRACTION));
+        console.log(store.dispatch(INCREMENT));
     });
 
     decrButton.addEventListener("click", function(){
         value = value -1;
         paragraph.innerHTML = value;
-        console.log(store.dispatch(DECRACTION));
+        console.log(store.dispatch(DECREMENT));
     })
 }
 
@@ -47,7 +47,7 @@ const clickReducer = (state = 0, action) => {
     }
 }
 
-console.log(clickReducer);
+// console.log(clickReducer);
 
 /*creo il redux store */
 const store = createStore(clickReducer);
@@ -68,6 +68,7 @@ const store = createStore(clickReducer);
 
 /* invio la action allo store*/
 console.warn("dispatcho la action ",store.dispatch(INCRACTION()));
+console.warn("dispatcho la action ",store.dispatch(DECRACTION()));
 
 /*con il metodo getState() prendo il valore dello state*/
 console.log(store.getState());
