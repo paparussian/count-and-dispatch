@@ -1,49 +1,17 @@
 import {applyMiddleware, createStore} from 'redux';
 
-
-window.onload = 
-function createButton() {
-    // console.log('mancuso', applyMiddleware);
-    const incrButton = document.createElement("button");
-    const textButton_1 = document.createTextNode("+");
-    incrButton.appendChild(textButton_1);
-    document.getElementById("counter").appendChild(incrButton); 
-
-    const decrButton = document.createElement("button");
-    const textButton_2 = document.createTextNode("-");
-    decrButton.appendChild(textButton_2);
-    document.getElementById("counter").appendChild(decrButton); 
-
-
-    const paragraph = document.getElementById('value');
-    let value = store.getState();
-    incrButton.addEventListener("click", function(){
-        value = value+1;
-        paragraph.innerHTML = value;
-        store.dispatch(incrementPayload(value));
-        // console.log(store.dispatch(INCREMENT));
-        console.log('STATE IS: ' + value);
-    });
-
-
-    decrButton.addEventListener("click", function(){
-        value = value -1;
-        paragraph.innerHTML = value;
-        store.dispatch(decrementPayload(value));
-        console.log('STATE IS: ' + value);
-    })
-}
-
-const INCREMENT = {type: "INCREMENT"};
-const DECREMENT = {type: "DECREMENT"};
+const paragraph = document.getElementById('value');
 
 /*creo il reducer: responsabile delle modifiche allo state, ossia risponde alle action dispatchate - RITORNA SEMPRE UN NUOVO STATE*/
-const reducers = (state = 0, action) => {
-    switch (action.type) {
-        case INCREMENT:
-            return state + 1; //Object.assign({}, state, {state: state+1})
-        case DECREMENT:
-            return state -1;
+function reducers(state, action){
+    if(typeof state === 'undefined') {
+        return 0
+    }
+    switch(action.type){
+        case 'INCREMENT':
+            return state = state + 1;
+        case 'DECREMENT':
+            return state = state - 1;
         default:
             return state
     }
@@ -52,22 +20,93 @@ const reducers = (state = 0, action) => {
 /*creo il redux store */
 const store = createStore(reducers);
 
+/*creo la funzione render per renderizzare in HTML */
+function render(){
+    paragraph.innerHTML = store.getState().toString();
 
-/*function che dispatcha il payload */
+}
+/*renderizzo lo state quando carico la pagina*/
+render();
+
+const incrButton = document.getElementById('increment');
+const decrButton = document.getElementById('decrement');
+
+incrButton.addEventListener('click', function(){
+    store.dispatch({type: 'INCREMENT'});
+});
+
+decrButton.addEventListener('click', function(){
+    store.dispatch({type: 'DECREMENT'});
+});
+
+//faccio il subscribe per il render della value nel paragrafo a ogni aggiornamento
+store.subscribe(render);
+
+
+/*con il metodo getState() prendo il valore dello state*/
+console.log("STARTING STATE IS: " + store.getState());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+const reducers = (state = 0, action) => {
+    switch (action.type) {
+        case INCREMENT:
+            return state + 1;
+        case DECREMENT:
+            return state -1;
+        default:
+            return state
+    }
+}
+*/
+
+
+/*function che dispatcha il payload 
 const incrementPayload = (value) => {
-    return {action: INCREMENT,
+    return {type: INCREMENT,
             payload: value}
 }
 
 const decrementPayload = (value) => {
-    return {action: DECREMENT,
+    return {type: DECREMENT,
             payload: value}
 }
+
 
 // console.log(reducers);
 
 
-/*creo le action creator (funzioni che ritornano le azioni. Ovvero creano oggetti che rappresentano gli eventi dell'azione)*/
+/*creo le action creator (funzioni che ritornano le azioni. Ovvero creano oggetti che rappresentano gli eventi dell'azione)
 
   const INCRACTION = () => {
       return {type: INCREMENT,
@@ -80,11 +119,11 @@ const decrementPayload = (value) => {
               text: "You clicked the DECREMENTER!"
              }
   }
+*/
 
 /* invio la action allo store*/
 // console.log("dispatcho la action ",store.dispatch(INCRACTION()));
 // console.log("dispatcho la action ",store.dispatch(DECRACTION()));
 
-/*con il metodo getState() prendo il valore dello state*/
-console.log("STARTING STATE IS: " + store.getState());
+
 
