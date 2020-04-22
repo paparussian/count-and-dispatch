@@ -1,27 +1,11 @@
 import {applyMiddleware, createStore} from 'redux';
-import {createAction} from 'redux-actions';
-import { composeWithDevTools } from 'redux-devtools-extension';
-
-const MODIFY_COUNTER = 'MODIFY_COUNTER';
-const modifyCounter = createAction(MODIFY_COUNTER);
+// import {createAction} from 'redux-actions';
+// import { composeWithDevTools } from 'redux-devtools-extension';
+import {reducers} from '/home/apaparusso/Counter4dispatch/store/test/index';
+import {modifyCounter} from '/home/apaparusso/Counter4dispatch/store/test/index'
 
 const paragraph = document.getElementById('value');
 
-/*creo il reducer: responsabile delle modifiche allo state, ossia risponde alle action dispatchate - RITORNA SEMPRE UN NUOVO STATE*/
-function reducers(state = {counter: 0}, action){
-    if(typeof state === 'undefined') {
-        return 0
-    }
-    switch(action.type){
-        case MODIFY_COUNTER:
-            return {
-                ...state,
-                counter: state.counter + action.payload
-            };
-        default:
-            return state
-    }
-}
 
 /*creo il redux store */
 const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
