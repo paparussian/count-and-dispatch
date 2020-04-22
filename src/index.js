@@ -1,8 +1,8 @@
 import {applyMiddleware, createStore} from 'redux';
 // import {createAction} from 'redux-actions';
 // import { composeWithDevTools } from 'redux-devtools-extension';
-import {reducers} from '/home/apaparusso/Counter4dispatch/store/test/index';
-import {modifyCounter} from '/home/apaparusso/Counter4dispatch/store/test/index'
+import {reducers} from '../store/test/index.js';
+import {modifyCounter} from '../store/test/index.js'
 
 const paragraph = document.getElementById('value');
 
