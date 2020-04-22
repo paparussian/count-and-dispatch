@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/paparussian/count-and-dispatch#readme",
   "dependencies": {
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-actions": "^2.6.5"
   },
   "devDependencies": {
+    "redux-devtools-extension": "^2.13.8",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
