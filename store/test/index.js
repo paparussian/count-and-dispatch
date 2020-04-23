@@ -15,7 +15,7 @@ export const reducers = function(state = {counter: 0}, action){
                 ...state,
                 counter: state.counter + action.payload
             };
-        default:
-            return state
+            default:
+                return state
     }
 }

@@ -1,10 +1,9 @@
-import {applyMiddleware, createStore} from 'redux';
+import {applyMiddleware} from 'redux';
 import {createAction} from 'redux-actions';
 
-import {reducers} from './test/index.js';
 
 
 export const MODIFY_COUNTER = 'MODIFY_COUNTER';
 export const modifyCounter = createAction(MODIFY_COUNTER);
 
-console.log(reducers)
+/*creo ed esporto la variabile combinedReducers per poterla implementare nel createStore di src/index.js */

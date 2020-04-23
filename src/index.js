@@ -2,9 +2,9 @@ import {applyMiddleware, createStore} from 'redux';
 // import {createAction} from 'redux-actions';
 // import { composeWithDevTools } from 'redux-devtools-extension';
 import {reducers} from '../store/test/index.js';
-import {modifyCounter} from '../store/test/index.js'
 
-const paragraph = document.getElementById('value');
+import {modifyCounter as modifyCounter} from '../store/test/index.js';
+
 
 
 /*creo il redux store */
@@ -12,6 +12,7 @@ const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && windo
 
 /*creo la funzione render per renderizzare in HTML */
 function render(){
+    const paragraph = document.getElementById('value');
     paragraph.innerHTML = store.getState().counter;
 }
 
@@ -20,6 +21,8 @@ render();
 
 const incrButton = document.getElementById('increment');
 const decrButton = document.getElementById('decrement');
+
+/*invio la action allo store tramite il dispatch*/
 
 incrButton.addEventListener('click', function(){
     store.dispatch(modifyCounter(1));
@@ -37,57 +40,3 @@ store.subscribe(render);
 
 /*con il metodo getState() prendo il valore dello state*/
 console.log("STARTING STATE IS: " + store.getState().counter);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-const reducers = (state = 0, action) => {
-    switch (action.type) {
-        case INCREMENT:
-            return state + 1;
-        case DECREMENT:
-            return state -1;
-        default:
-            return state
-    }
-}
-*/
-
-
-/*function che dispatchano il payload 
-const incrementPayload = (value) => {
-    return {type: INCREMENT,
-            payload: value}
-}
-
-const decrementPayload = (value) => {
-    return {type: DECREMENT,
-            payload: value}
-}
-*/
-
-
-/* invio la action allo store*/
-// console.log("dispatcho la action ",store.dispatch(INCRACTION()));
-// console.log("dispatcho la action ",store.dispatch(DECRACTION()));
-
-
-
