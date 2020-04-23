@@ -1,10 +1,11 @@
 import {applyMiddleware, createStore} from 'redux';
 // import {createAction} from 'redux-actions';
 // import { composeWithDevTools } from 'redux-devtools-extension';
-import {reducers} from '../store/test/index.js';
+import {reducers} from '../store/test/index';
 
-import {modifyCounter as modifyCounter} from '../store/test/index.js';
+import {modifyCounter as modifyCounter} from '../store/test/index';
 
+import connect from "../store/connect";
 
 
 /*creo il redux store */
