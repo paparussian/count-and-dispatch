@@ -1,7 +1,8 @@
-import {applyMiddleware} from 'redux';
-import {createAction} from 'redux-actions';
+import {applyMiddleware, createStore} from 'redux';
+import {testAction} from './test/actions';
+import createReducer from './reducers';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
-
-
-export const MODIFY_COUNTER = 'MODIFY_COUNTER';
-export const modifyCounter = createAction(MODIFY_COUNTER);
+export function initStore() {
+    return store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+}

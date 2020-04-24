@@ -1,4 +1,5 @@
 /*custom connect - sostituisce subscribe*/
+
 export default (
     mapStateToProps,
     mapDispatchToEvents,

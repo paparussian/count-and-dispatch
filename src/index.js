@@ -1,9 +1,7 @@
 import {applyMiddleware, createStore} from 'redux';
-// import {createAction} from 'redux-actions';
-// import { composeWithDevTools } from 'redux-devtools-extension';
 import {reducers} from '../store/test/index';
 
-import {modifyCounter as modifyCounter} from '../store/test/index';
+import {modifyCounter} from '../store/test/actions';
 
 import connect from "../store/connect";
 
@@ -35,7 +33,8 @@ decrButton.addEventListener('click', function(){
     console.log('State is: ' ,store.getState());
 });
 
-//faccio il subscribe per il render della value nell'element paragraph a ogni aggiornamento
+/*faccio il subscribe per il render della value nell'element paragraph a ogni aggiornamento 
+è un' alternativa a "connect"che dovrà comunque essere poi inserita in sostituzione a subscribe*/
 store.subscribe(render);
 
 
