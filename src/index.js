@@ -1,9 +1,9 @@
 import {applyMiddleware, createStore} from 'redux';
-import {reducers} from '../store/test/index';
+import {reducers} from './store/test/index';
 
-import {modifyCounter} from '../store/test/actions';
+import {modifyCounter} from './store/test/actions';
 
-import connect from "../store/connect";
+import connect from "./store/connect";
 
 
 /*creo il redux store */
