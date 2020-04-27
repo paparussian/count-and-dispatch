@@ -1,8 +1,4 @@
-import reducers from './test';
+import test from './test';
 import { combineReducers } from 'redux';
 
-export default function createReducer() {
-    return combineReducers({
-        reducers
-    })
-}
+export default combineReducers({test});
